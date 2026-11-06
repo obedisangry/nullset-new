@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useRef, useState } from "react";
-import { EyeOff, GitBranch, KeyRound, ShieldCheck } from "lucide-react";
 import { Header, type DemoWallet } from "./Header";
 import { PoolCard } from "./PoolCard";
 import { StatsCard } from "./StatsCard";
@@ -17,10 +16,10 @@ import { WalletModal, WALLET_OPTIONS, type WalletKind } from "./WalletModal";
 import { clock, randAddress, randHex, seedMixHistory, seedPools, sha256, makeExampleMix, type Denom, type LedgerEvent, type MixRecord, type Pool } from "@/lib/nullset/sim";
 
 const HOW = [
-  { icon: KeyRound, title: "Make a note", body: "Your browser creates a random nullifier and secret. Their hash, the commitment, is what gets deposited." },
-  { icon: GitBranch, title: "Join the tree", body: "Each commitment becomes a leaf in the pool's Merkle tree, alongside every other equal-sized deposit." },
-  { icon: EyeOff, title: "Prove, don't reveal", body: "A zero-knowledge proof shows you own some leaf without saying which. The nullifier hash stops double-spends." },
-  { icon: ShieldCheck, title: "Withdraw fresh", body: "Funds go to a new address, optionally through a relayer. On chain, nothing links it to your deposit." },
+  { title: "Make a note", body: "Your browser creates a random nullifier and secret. Their hash, the commitment, is what gets deposited." },
+  { title: "Join the tree", body: "Each commitment becomes a leaf in the pool's Merkle tree, alongside every other equal-sized deposit." },
+  { title: "Prove, don't reveal", body: "A zero-knowledge proof shows you own some leaf without saying which. The nullifier hash stops double-spends." },
+  { title: "Withdraw fresh", body: "Funds go to a new address, optionally through a relayer. On chain, nothing links it to your deposit." },
 ];
 
 export function MixerApp() {
@@ -187,12 +186,13 @@ export function MixerApp() {
       <Header wallet={wallet} connecting={connecting} onConnect={connect} onDisconnect={() => setWallet(null)} />
 
       <main className="mx-auto w-full max-w-6xl flex-1 px-4">
-        <div className="pb-8 pt-10 sm:pt-14">
-          <p className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-ns-border bg-ns-surface-2 px-3 py-1 text-xs font-medium text-ns-muted">
-            <span className="size-1.5 rounded-full bg-ns-warn" aria-hidden />
-            Interactive simulation · no real funds or blockchain
-          </p>
-          <p className="mt-4 max-w-2xl text-ns-muted">
+        <div className="pb-10 pt-12 sm:pt-20">
+          <h1 className="max-w-3xl text-3xl font-semibold leading-tight tracking-tight sm:text-5xl">
+            Private transfers.
+            <br />
+            <span className="text-ns-muted">No link on chain.</span>
+          </h1>
+          <p className="mt-5 max-w-2xl text-sm leading-relaxed text-ns-muted sm:text-base">
             Deposit into a shared pool, keep your secret note, and withdraw to a fresh address. A zero-knowledge proof
             breaks the on-chain link between the two.
           </p>
@@ -231,30 +231,25 @@ export function MixerApp() {
           <StatsCard pools={pools} denom={denom} onDenomChange={selectDenom} />
         </div>
 
-        <MixingVisual events={events} pools={pools} denom={denom} teacher={teacher} />
+        <MixingVisual events={events} pools={pools} denom={denom} teacher={teacher} wallet={wallet} mixes={mixes} />
         <ObserverCard events={events} teacher={teacher} presenter={presenter} onTeacherChange={setTeacher} onStrangerActivity={strangerActivity} />
         <DepositHistory events={events} mixes={mixes} />
         <MixHistory mixes={mixes} />
 
         <section id="how" className="mt-16 scroll-mt-24">
-          <h2 className="text-2xl font-bold tracking-tight">How it works</h2>
+          <h2 className="text-2xl font-semibold tracking-tight">How it works</h2>
           <p className="mt-2 max-w-2xl text-sm text-ns-muted">
             Four steps from deposit to an unlinked withdrawal. Your note never leaves your device.
           </p>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {HOW.map(({ icon: Icon, title, body }, i) => (
-              <div key={title} className="rounded-2xl border border-ns-border bg-ns-surface p-5">
-                <div className="flex items-center gap-3">
-                  <span className="grid size-9 place-items-center rounded-xl bg-ns-teal-soft text-ns-teal">
-                    <Icon className="size-4" />
-                  </span>
-                  <span className="text-xs font-semibold text-ns-muted">Step {i + 1}</span>
-                </div>
+          <ol className="mt-6 grid border-l border-t border-ns-border sm:grid-cols-2 lg:grid-cols-4">
+            {HOW.map(({ title, body }, i) => (
+              <li key={title} className="border-b border-r border-ns-border p-5">
+                <span className="text-xs text-ns-muted">{String(i + 1).padStart(2, "0")}</span>
                 <h3 className="mt-3 font-semibold">{title}</h3>
-                <p className="mt-1 text-sm text-ns-muted">{body}</p>
-              </div>
+                <p className="mt-1 text-sm leading-relaxed text-ns-muted">{body}</p>
+              </li>
             ))}
-          </div>
+          </ol>
         </section>
       </main>
 
@@ -266,7 +261,7 @@ export function MixerApp() {
         aria-live="polite"
         className={`pointer-events-none fixed inset-x-0 bottom-5 z-[60] flex justify-center px-4 transition ${toastMsg ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"}`}
       >
-        {toastMsg && <div className="rounded-xl border border-ns-border bg-ns-surface-3 px-4 py-2.5 text-sm shadow-2xl">{toastMsg}</div>}
+        {toastMsg && <div className="rounded-sm border border-ns-border bg-ns-surface-3 px-4 py-2.5 text-sm">{toastMsg}</div>}
       </div>
     </div>
   );

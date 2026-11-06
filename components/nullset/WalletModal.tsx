@@ -54,12 +54,12 @@ export function WalletModal({ speed, onClose, onConnected }: { speed: number; on
       aria-labelledby="wallet-title"
       onMouseDown={(e) => e.target === e.currentTarget && onClose()}
     >
-      <div className="w-full max-w-md rounded-t-3xl border border-ns-border bg-ns-surface p-5 shadow-2xl sm:rounded-3xl sm:p-6">
+      <div className="w-full max-w-md rounded-t-sm border border-ns-border bg-ns-surface p-5 sm:rounded-sm sm:p-6">
         <div className="mb-5 flex items-center justify-between gap-4">
           <h2 id="wallet-title" className="text-lg font-bold">
             {phase.step === "pick" ? "Connect a wallet" : option!.name}
           </h2>
-          <button onClick={onClose} aria-label="Close" className="grid size-9 place-items-center rounded-xl border border-ns-border text-ns-muted hover:text-ns-text">
+          <button onClick={onClose} aria-label="Close" className="grid size-9 place-items-center rounded-sm border border-ns-border text-ns-muted hover:text-ns-text">
             <X className="size-4" />
           </button>
         </div>
@@ -71,15 +71,15 @@ export function WalletModal({ speed, onClose, onConnected }: { speed: number; on
                 <li key={o.id}>
                   <button
                     onClick={() => choose(o.id)}
-                    className="group flex w-full items-center gap-3 rounded-2xl border border-ns-border bg-ns-surface-2 p-3 text-left transition hover:border-ns-teal/60 hover:bg-ns-surface-3"
+                    className="group flex w-full items-center gap-3 rounded-sm border border-ns-border bg-ns-surface-2 p-3 text-left transition hover:border-ns-teal/60 hover:bg-ns-surface-3"
                   >
-                    <span className="grid size-10 place-items-center rounded-xl bg-ns-bg text-ns-teal">
+                    <span className="grid size-10 place-items-center rounded-sm bg-ns-bg text-ns-teal">
                       <o.icon className="size-5" />
                     </span>
                     <span className="flex-1">
                       <span className="flex items-center gap-2 text-sm font-semibold">
                         {o.name}
-                        {"popular" in o && o.popular && <span className="rounded-full bg-ns-teal-soft px-2 py-0.5 text-[10px] font-semibold text-ns-teal">Popular</span>}
+                        {"popular" in o && o.popular && <span className="rounded-sm bg-ns-teal-soft px-1.5 py-0.5 text-[10px] font-semibold text-ns-teal">Popular</span>}
                       </span>
                       <span className="text-xs text-ns-muted">{o.hint}</span>
                     </span>
@@ -97,7 +97,7 @@ export function WalletModal({ speed, onClose, onConnected }: { speed: number; on
 
         {phase.step !== "pick" && option && (
           <div className="flex flex-col items-center py-4 text-center">
-            <span className="relative grid size-20 place-items-center rounded-3xl bg-ns-surface-2 text-ns-teal">
+            <span className="relative grid size-20 place-items-center rounded-sm bg-ns-surface-2 text-ns-teal">
               <option.icon className="size-9" />
               {phase.step === "done" && <CircleCheck className="absolute -bottom-1 -right-1 size-7 rounded-full bg-ns-surface text-ns-ok" />}
             </span>

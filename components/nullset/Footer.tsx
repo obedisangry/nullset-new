@@ -32,13 +32,13 @@ export function Footer({ toast }: { toast: (m: string) => void }) {
             <button
               key={label}
               onClick={() => toast(`${label}: coming soon`)}
-              className="inline-flex h-10 items-center gap-2 rounded-xl border border-ns-border px-3 text-sm text-ns-muted hover:border-ns-border-strong hover:text-ns-text"
+              className="inline-flex h-10 items-center gap-2 rounded-sm border border-ns-border px-3 text-sm text-ns-muted hover:border-ns-border-strong hover:text-ns-text"
             >
               <Icon className="size-4" /> {label}
             </button>
           ))}
         </div>
-        <label className="relative inline-flex h-10 items-center gap-2 rounded-xl border border-ns-border px-3 text-sm text-ns-muted">
+        <label className="relative inline-flex h-10 items-center gap-2 rounded-sm border border-ns-border px-3 text-sm text-ns-muted">
           <Globe className="size-4" />
           <span className="sr-only">Language</span>
           <select

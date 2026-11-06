@@ -6,13 +6,14 @@ import { useSyncExternalStore } from "react";
 
 export interface Brand {
   name: string;
-  primary: string; // hex, e.g. #2dd4bf
-  secondary: string; // hex, e.g. #9b87ff
+  primary: string; // hex, e.g. #ededed
+  secondary: string; // hex, e.g. #a3a3a3
 }
 
-export const DEFAULT_BRAND: Brand = { name: "Nullset", primary: "#2dd4bf", secondary: "#9b87ff" };
+export const DEFAULT_BRAND: Brand = { name: "Nullset", primary: "#ededed", secondary: "#a3a3a3" };
 
 export const BRAND_PRESETS: { label: string; primary: string; secondary: string }[] = [
+  { label: "Mono", primary: "#ededed", secondary: "#a3a3a3" },
   { label: "Teal / violet", primary: "#2dd4bf", secondary: "#9b87ff" },
   { label: "Blue / pink", primary: "#60a5fa", secondary: "#f472b6" },
   { label: "Orange / gold", primary: "#fb923c", secondary: "#facc15" },
@@ -94,16 +95,16 @@ export function inkFor(hex: string): string {
     const s = c / 255;
     return s <= 0.03928 ? s / 12.92 : ((s + 0.055) / 1.055) ** 2.4;
   });
-  return 0.2126 * r + 0.7152 * g + 0.0722 * b > 0.35 ? "#06121a" : "#ffffff";
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b > 0.35 ? "#0a0a0a" : "#ffffff";
 }
 
 /** CSS variable overrides that re-theme every component below the element. */
 export function brandStyle(b: Brand): React.CSSProperties {
   return {
     "--color-ns-teal": b.primary,
-    "--color-ns-teal-soft": `color-mix(in srgb, ${b.primary} 16%, #0a0d14)`,
+    "--color-ns-teal-soft": `color-mix(in srgb, ${b.primary} 16%, #0a0a0a)`,
     "--color-ns-teal-ink": inkFor(b.primary),
     "--color-ns-violet": b.secondary,
-    "--color-ns-violet-soft": `color-mix(in srgb, ${b.secondary} 16%, #0a0d14)`,
+    "--color-ns-violet-soft": `color-mix(in srgb, ${b.secondary} 16%, #0a0a0a)`,
   } as React.CSSProperties;
 }

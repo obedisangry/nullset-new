@@ -47,7 +47,7 @@ function WalletButton({ wallet, connecting, onConnect, onDisconnect, full }: Hea
   }
   return (
     <div className={`flex items-center gap-2 ${full ? "w-full" : ""}`}>
-      <div className="flex h-11 flex-1 items-center gap-2 rounded-xl border border-ns-border bg-ns-surface-2 px-3 text-sm">
+      <div className="flex h-11 flex-1 items-center gap-2 rounded-sm border border-ns-border bg-ns-surface-2 px-3 text-sm">
         <span className="size-2 rounded-full bg-ns-ok" aria-hidden />
         <span className="font-mono text-xs">{shorten(wallet.address)}</span>
         <span className="ml-auto flex flex-col items-end pl-2 leading-tight">
@@ -76,9 +76,9 @@ export function Header(props: HeaderProps) {
   const rate = useEthUsd();
   return (
     <header className="sticky top-0 z-40 border-b border-ns-border bg-ns-bg/80 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-6xl items-center gap-6 px-4">
+      <div className="mx-auto flex h-16 max-w-6xl items-center gap-4 px-4 lg:gap-6">
         <Logo />
-        <nav className="hidden items-center gap-6 text-sm text-ns-muted md:flex">
+        <nav className="hidden items-center gap-4 whitespace-nowrap text-[13px] text-ns-muted lg:flex xl:gap-5">
           {LINKS.map((l) => (
             <a key={l.href} href={l.href} className="hover:text-ns-text">
               {l.label}
@@ -88,16 +88,16 @@ export function Header(props: HeaderProps) {
             <BookOpen className="size-4" /> Docs
           </a>
         </nav>
-        <div className="ml-auto hidden items-center gap-3 md:flex">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-ns-border bg-ns-surface-2 px-3 py-1 text-xs font-semibold text-ns-muted">
+        <div className="ml-auto hidden items-center gap-3 lg:flex">
+          <span className="hidden items-center gap-1.5 rounded-sm border xl:inline-flex border-ns-border bg-ns-surface-2 px-3 py-1 text-xs font-semibold text-ns-muted">
             <span className="size-1.5 rounded-full bg-ns-violet" /> Ethereum
           </span>
-          <div className="w-80">
+          <div className="w-60">
             <WalletButton {...props} full />
           </div>
         </div>
         {props.wallet && (
-          <div className="ml-auto flex flex-col items-end leading-tight md:hidden" aria-label="Wallet balance">
+          <div className="ml-auto flex flex-col items-end leading-tight lg:hidden" aria-label="Wallet balance">
             <span className="text-sm font-bold text-ns-teal">
               {props.wallet.balance.toLocaleString(undefined, { maximumFractionDigits: 2 })} {TOKEN}
             </span>
@@ -105,7 +105,7 @@ export function Header(props: HeaderProps) {
           </div>
         )}
         <button
-          className={`${props.wallet ? "" : "ml-auto"} grid size-10 shrink-0 place-items-center rounded-xl border border-ns-border md:hidden`}
+          className={`${props.wallet ? "" : "ml-auto"} grid size-10 shrink-0 place-items-center rounded-sm border border-ns-border lg:hidden`}
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           onClick={() => setOpen((o) => !o)}
@@ -114,7 +114,7 @@ export function Header(props: HeaderProps) {
         </button>
       </div>
       {open && (
-        <div className="border-t border-ns-border bg-ns-bg px-4 pb-5 pt-3 md:hidden">
+        <div className="border-t border-ns-border bg-ns-bg px-4 pb-5 pt-3 lg:hidden">
           <nav className="flex flex-col text-[15px]">
             {LINKS.map((l) => (
               <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="border-b border-ns-border/60 py-3 text-ns-text">

@@ -11,7 +11,7 @@ type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 
 export function Button({ variant = "primary", size = "md", loading, className = "", children, disabled, ...rest }: ButtonProps) {
   const base =
-    "inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition active:translate-y-px disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ns-teal";
+    "inline-flex items-center justify-center gap-2 rounded-sm font-semibold transition active:translate-y-px disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ns-teal";
   const variants = {
     primary: "bg-ns-teal text-ns-teal-ink hover:brightness-110",
     ghost: "border border-ns-border bg-transparent text-ns-text hover:border-ns-border-strong hover:bg-ns-surface-2",
@@ -55,7 +55,7 @@ export function InfoTip({ children, label = "More info" }: { children: React.Rea
         <span
           id={id}
           role="tooltip"
-          className="absolute left-1/2 top-7 z-30 w-64 -translate-x-1/2 rounded-xl border border-ns-border bg-ns-surface-3 p-3 text-xs font-normal leading-relaxed text-ns-muted shadow-2xl"
+          className="absolute left-1/2 top-7 z-30 w-64 -translate-x-1/2 rounded-sm border border-ns-border bg-ns-surface-3 p-3 text-xs font-normal leading-relaxed text-ns-muted"
         >
           {children}
         </span>
@@ -71,5 +71,5 @@ export function Badge({ tone = "teal", children }: { tone?: "teal" | "violet" | 
     warn: "bg-ns-warn-soft text-ns-warn",
     muted: "bg-ns-surface-3 text-ns-muted",
   } as const;
-  return <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-semibold ${tones[tone]}`}>{children}</span>;
+  return <span className={`inline-flex items-center gap-1 rounded-sm px-1.5 py-0.5 text-[11px] font-semibold ${tones[tone]}`}>{children}</span>;
 }

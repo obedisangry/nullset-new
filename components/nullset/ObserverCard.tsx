@@ -23,7 +23,7 @@ export function ObserverCard({ events, teacher, presenter, onTeacherChange, onSt
   const now = useSyncExternalStore(clock.subscribe, clock.getSnapshot, clock.getServerSnapshot);
 
   return (
-    <section id="observer" className="mt-5 scroll-mt-24 rounded-3xl border border-ns-border bg-ns-surface p-4 shadow-2xl shadow-black/30 sm:p-6">
+    <section id="observer" className="mt-5 scroll-mt-24 rounded-sm border border-ns-border bg-ns-surface p-4 sm:p-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <h2 className="flex items-center gap-2 text-base font-bold">
@@ -39,7 +39,7 @@ export function ObserverCard({ events, teacher, presenter, onTeacherChange, onSt
             <Plus className="size-3.5" /> Other users&apos; activity
           </Button>
           {presenter && (
-            <label className="flex h-8 cursor-pointer items-center gap-2 rounded-lg border border-ns-border px-3 text-xs font-semibold">
+            <label className="flex h-8 cursor-pointer items-center gap-2 rounded-sm border border-ns-border px-3 text-xs font-semibold">
               <GraduationCap className="size-3.5 text-ns-violet" />
               Teacher view
               <input type="checkbox" checked={teacher} onChange={(e) => onTeacherChange(e.target.checked)} className="peer sr-only" />
@@ -53,7 +53,7 @@ export function ObserverCard({ events, teacher, presenter, onTeacherChange, onSt
       </div>
 
       {teacher && (
-        <div className="mt-4 rounded-xl border border-ns-violet/30 bg-ns-violet-soft/60 p-3.5 text-sm text-ns-muted">
+        <div className="mt-4 rounded-sm border border-ns-violet/30 bg-ns-violet-soft/60 p-3.5 text-sm text-ns-muted">
           <b className="text-ns-violet">Teacher view</b> shows private knowledge in violet: which deposit each of <i>your</i> withdrawals spent. Only
           the note holder knows this. The chain, the contract and the relayer never see it. The withdrawal steps above also show their hashes now.
         </div>

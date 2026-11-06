@@ -215,7 +215,8 @@ export function seedMixHistory(): MixRecord[] {
   const rnd = mulberry32(7331);
   const H = 3_600_000;
   const D = 24 * H;
-  const rows: [Denom, number, number, number, number][] = [
+  const rows: [Denom, number | undefined, number, number, number][] = [
+    ["14.2", undefined, 4 * H, 184, 179],
     ["20", 2 * H, 10 * H, 148, 139],
     ["30", 8.5 * D, 10 * D, 91, 84],
     ["10", 11 * D, 12 * D, 268, 251],

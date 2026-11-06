@@ -12,7 +12,7 @@ export function MixHistory({ mixes }: { mixes: MixRecord[] }) {
   const age = (abs: number | undefined, atLoad: number | undefined) => (abs ? now - abs : since + (atLoad ?? 0));
 
   return (
-    <section id="history" className="mt-5 scroll-mt-24 rounded-3xl border border-ns-border bg-ns-surface p-4 shadow-2xl shadow-black/30 sm:p-6">
+    <section id="history" className="mt-5 scroll-mt-24 rounded-sm border border-ns-border bg-ns-surface p-4 sm:p-6">
       <h2 className="flex items-center gap-2 text-base font-bold">
         <History className="size-4 text-ns-teal" /> Previous mixes
       </h2>
@@ -26,7 +26,7 @@ export function MixHistory({ mixes }: { mixes: MixRecord[] }) {
           const withdrawn = m.withdrawAt != null || m.withdrawAge != null;
           const wAge = age(m.withdrawAt, m.withdrawAge);
           return (
-            <article key={m.id} className="rounded-2xl border border-ns-border bg-ns-surface-2 p-4">
+            <article key={m.id} className="rounded-sm border border-ns-border bg-ns-surface-2 p-4">
               <div className="flex items-center justify-between">
                 <span className="text-sm font-semibold">
                   {m.denom} {TOKEN}

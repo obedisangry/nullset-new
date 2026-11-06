@@ -38,7 +38,7 @@ export function DepositHistory({ events, mixes }: { events: LedgerEvent[]; mixes
   const fmt = (n: number) => n.toLocaleString(undefined, { maximumFractionDigits: 2 });
 
   return (
-    <section id="deposits" className="mt-5 scroll-mt-24 rounded-3xl border border-ns-border bg-ns-surface p-4 shadow-2xl shadow-black/30 sm:p-6">
+    <section id="deposits" className="mt-5 scroll-mt-24 rounded-sm border border-ns-border bg-ns-surface p-4 sm:p-6">
       <h2 className="flex items-center gap-2 text-base font-bold">
         <ArrowDownToLine className="size-4 text-ns-teal" /> Deposit history
       </h2>
@@ -92,7 +92,7 @@ export function DepositHistory({ events, mixes }: { events: LedgerEvent[]; mixes
 
 function Stat({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-2xl border border-ns-border bg-ns-surface-2 p-3 sm:p-4">
+    <div className="rounded-sm border border-ns-border bg-ns-surface-2 p-3 sm:p-4">
       <p className="text-[11px] font-medium text-ns-muted sm:text-xs">{label}</p>
       <p className="mt-1 text-lg font-bold tracking-tight sm:text-xl">{value}</p>
     </div>

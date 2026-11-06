@@ -34,7 +34,7 @@ const SPEEDS = [
 /** Presenter-only panel, shown with teacher view, for setting up classroom scenarios. */
 export function ControlsCard(p: ControlsCardProps) {
   return (
-    <section className="mb-5 rounded-3xl border border-ns-violet/40 bg-ns-surface p-4 sm:p-6">
+    <section className="mb-5 rounded-sm border border-ns-violet/40 bg-ns-surface p-4 sm:p-6">
       <div className="flex justify-end">
         <Button variant="ghost" size="sm" onClick={p.onReset}>
           <RotateCcw className="size-3.5" /> Reset session
@@ -63,7 +63,7 @@ export function ControlsCard(p: ControlsCardProps) {
           <select
             value={p.controls.speed}
             onChange={(e) => p.onControlsChange({ ...p.controls, speed: Number(e.target.value) })}
-            className="h-10 w-full rounded-xl border border-ns-border bg-ns-surface-2 px-3 text-sm focus:border-ns-violet focus:outline-none"
+            className="h-10 w-full rounded-sm border border-ns-border bg-ns-surface-2 px-3 text-sm focus:border-ns-violet focus:outline-none"
           >
             {SPEEDS.map((s) => (
               <option key={s.v} value={s.v}>
@@ -108,7 +108,7 @@ function HistoryControls({
   // Only the seeded / presenter-added examples are editable (not live-session mixes).
   const examples = mixes.filter((m) => !m.depositAt);
   return (
-    <div className="mt-4 rounded-2xl border border-ns-border bg-ns-surface-2/60 p-3.5">
+    <div className="mt-4 rounded-sm border border-ns-border bg-ns-surface-2/60 p-3.5">
       <div className="mb-3 flex items-center justify-between gap-3">
         <p className="flex items-center gap-1.5 text-xs font-semibold text-ns-muted">
           <Clock className="size-3.5" /> Example history
@@ -131,7 +131,7 @@ function HistoryControls({
   );
 }
 
-const fieldCls = "h-9 w-full rounded-lg border border-ns-border bg-ns-surface-2 px-2.5 text-xs text-ns-text focus:border-ns-violet focus:outline-none";
+const fieldCls = "h-9 w-full rounded-sm border border-ns-border bg-ns-surface-2 px-2.5 text-xs text-ns-text focus:border-ns-violet focus:outline-none";
 
 function HistoryRow({ mix, onChange, onRemove }: { mix: MixRecord; onChange: (id: string, patch: Partial<MixRecord>) => void; onRemove: (id: string) => void }) {
   const ageMs = mix.depositAge ?? DAY;
@@ -164,10 +164,10 @@ function HistoryRow({ mix, onChange, onRemove }: { mix: MixRecord; onChange: (id
   };
 
   return (
-    <div className="rounded-xl border border-ns-border bg-ns-surface-2/60 p-3">
+    <div className="rounded-sm border border-ns-border bg-ns-surface-2/60 p-3">
       <div className="mb-2 flex items-center justify-between">
         <span className="text-[11px] font-semibold text-ns-muted">Entry</span>
-        <button onClick={() => onRemove(mix.id)} aria-label="Delete entry" className="grid size-7 place-items-center rounded-lg border border-ns-border text-ns-muted hover:text-ns-danger">
+        <button onClick={() => onRemove(mix.id)} aria-label="Delete entry" className="grid size-7 place-items-center rounded-sm border border-ns-border text-ns-muted hover:text-ns-danger">
           <Trash2 className="size-3.5" />
         </button>
       </div>
@@ -258,7 +258,7 @@ function BrandingControls() {
   const custom = brand.primary !== DEFAULT_BRAND.primary || brand.secondary !== DEFAULT_BRAND.secondary || brand.name !== DEFAULT_BRAND.name;
 
   return (
-    <div className="mt-4 rounded-2xl border border-ns-border bg-ns-surface-2/60 p-3.5">
+    <div className="mt-4 rounded-sm border border-ns-border bg-ns-surface-2/60 p-3.5">
       <div className="mb-3 flex items-center justify-between gap-3">
         <p className="flex items-center gap-1.5 text-xs font-semibold text-ns-muted">
           <Palette className="size-3.5" /> Branding
@@ -284,7 +284,7 @@ function BrandingControls() {
             onChange={(e) => setName(e.target.value)}
             onBlur={commitName}
             onKeyDown={(e) => e.key === "Enter" && (e.target as HTMLInputElement).blur()}
-            className="h-10 w-full rounded-xl border border-ns-border bg-ns-surface-2 px-3 text-sm focus:border-ns-violet focus:outline-none"
+            className="h-10 w-full rounded-sm border border-ns-border bg-ns-surface-2 px-3 text-sm focus:border-ns-violet focus:outline-none"
           />
         </label>
         <div className="flex gap-3">
@@ -303,7 +303,7 @@ function BrandingControls() {
                   aria-label={pr.label}
                   aria-pressed={active}
                   onClick={() => brandStore.set({ primary: pr.primary, secondary: pr.secondary })}
-                  className={`flex h-10 items-center gap-1 rounded-xl border px-2.5 ${active ? "border-ns-text" : "border-ns-border hover:border-ns-border-strong"}`}
+                  className={`flex h-10 items-center gap-1 rounded-sm border px-2.5 ${active ? "border-ns-text" : "border-ns-border hover:border-ns-border-strong"}`}
                 >
                   <span className="size-4 rounded-full" style={{ background: pr.primary }} />
                   <span className="size-4 rounded-full" style={{ background: pr.secondary }} />
@@ -321,12 +321,12 @@ function ColorField({ label, value, onChange }: { label: string; value: string; 
   return (
     <label className="block">
       <span className="mb-1.5 block text-[11px] text-ns-muted">{label}</span>
-      <span className="flex h-10 items-center gap-2 rounded-xl border border-ns-border bg-ns-surface-2 pl-1.5 pr-3">
+      <span className="flex h-10 items-center gap-2 rounded-sm border border-ns-border bg-ns-surface-2 pl-1.5 pr-3">
         <input
           type="color"
           value={value}
           onChange={(e) => isHex(e.target.value) && onChange(e.target.value)}
-          className="size-7 cursor-pointer rounded-lg border-0 bg-transparent p-0"
+          className="size-7 cursor-pointer rounded-sm border-0 bg-transparent p-0"
         />
         <span className="font-mono text-xs uppercase">{value}</span>
       </span>
@@ -336,7 +336,7 @@ function ColorField({ label, value, onChange }: { label: string; value: string; 
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div className="rounded-2xl border border-ns-border bg-ns-surface-2/60 p-3.5">
+    <div className="rounded-sm border border-ns-border bg-ns-surface-2/60 p-3.5">
       <p className="mb-2 text-xs font-semibold text-ns-muted">{label}</p>
       {children}
     </div>
@@ -378,7 +378,7 @@ function NumberInput({
       onChange={(e) => setDraft(e.target.value)}
       onBlur={commit}
       onKeyDown={(e) => e.key === "Enter" && (e.target as HTMLInputElement).blur()}
-      className={`w-full rounded-xl border border-ns-border bg-ns-surface-2 px-3 font-mono focus:border-ns-violet focus:outline-none ${compact ? "h-8 text-xs" : "h-10 text-sm"}`}
+      className={`w-full rounded-sm border border-ns-border bg-ns-surface-2 px-3 font-mono focus:border-ns-violet focus:outline-none ${compact ? "h-8 text-xs" : "h-10 text-sm"}`}
     />
   );
 }

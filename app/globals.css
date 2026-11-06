@@ -2,29 +2,30 @@
 
 /*
  * Nullset theme.
- * Deep navy surfaces, teal for actions, violet for privacy-related ("hidden") data.
+ * Monochrome, near-black, monospace. White is the action colour; grey marks
+ * private ("hidden") data. Status colours are kept muted and used sparingly.
  */
 @theme {
-  --color-ns-bg: #0a0d14;
-  --color-ns-surface: #111622;
-  --color-ns-surface-2: #171d2c;
-  --color-ns-surface-3: #1e2537;
-  --color-ns-border: #252d40;
-  --color-ns-border-strong: #34405a;
-  --color-ns-text: #eef1f8;
-  --color-ns-muted: #8f98ad;
-  --color-ns-teal: #2dd4bf;
-  --color-ns-teal-soft: #0f2f2c;
-  --color-ns-teal-ink: #04201c;
-  --color-ns-violet: #9b87ff;
-  --color-ns-violet-soft: #221c40;
-  --color-ns-warn: #f0b555;
-  --color-ns-warn-soft: #2e2412;
-  --color-ns-danger: #f2687a;
-  --color-ns-danger-soft: #34151b;
-  --color-ns-ok: #4ade80;
+  --color-ns-bg: #0a0a0a;
+  --color-ns-surface: #0a0a0a;
+  --color-ns-surface-2: #121212;
+  --color-ns-surface-3: #1a1a1a;
+  --color-ns-border: #262626;
+  --color-ns-border-strong: #404040;
+  --color-ns-text: #ededed;
+  --color-ns-muted: #8a8a8a;
+  --color-ns-teal: #ededed;
+  --color-ns-teal-soft: #1c1c1c;
+  --color-ns-teal-ink: #0a0a0a;
+  --color-ns-violet: #a3a3a3;
+  --color-ns-violet-soft: #171717;
+  --color-ns-warn: #d4a24c;
+  --color-ns-warn-soft: #1f1a10;
+  --color-ns-danger: #e5484d;
+  --color-ns-danger-soft: #221012;
+  --color-ns-ok: #7fbf8e;
 
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-jetbrains), ui-monospace, monospace;
   --font-mono: var(--font-jetbrains), ui-monospace, monospace;
 }
 
@@ -36,18 +37,15 @@ body {
   background-color: var(--color-ns-bg);
 }
 
-/* Page shell: the glows follow the (presenter-editable) brand colours. */
+/* Page shell: flat black with a faint dotted grid. */
 .ns-shell {
-  background:
-    radial-gradient(1200px 500px at 10% -10%, color-mix(in srgb, var(--color-ns-teal) 8%, transparent), transparent 60%),
-    radial-gradient(900px 500px at 100% 0%, color-mix(in srgb, var(--color-ns-violet) 8%, transparent), transparent 60%),
-    var(--color-ns-bg);
-  background-repeat: no-repeat;
   background-color: var(--color-ns-bg);
+  background-image: radial-gradient(circle at 1px 1px, rgb(255 255 255 / 0.05) 1px, transparent 0);
+  background-size: 24px 24px;
 }
 
 ::selection {
-  background: rgb(45 212 191 / 0.3);
+  background: rgb(237 237 237 / 0.25);
 }
 
 .ns-scroll::-webkit-scrollbar {
@@ -55,7 +53,7 @@ body {
 }
 .ns-scroll::-webkit-scrollbar-thumb {
   background: var(--color-ns-border-strong);
-  border-radius: 999px;
+  border-radius: 0;
 }
 
 /* Pool animation */
@@ -76,8 +74,8 @@ body {
   100% { left: 91%; opacity: 0; transform: translate(-50%, -50%) scale(1); }
 }
 @keyframes ns-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgb(45 212 191 / 0.25); }
-  50% { box-shadow: 0 0 0 14px rgb(45 212 191 / 0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgb(237 237 237 / 0.12); }
+  50% { box-shadow: 0 0 0 14px rgb(237 237 237 / 0); }
 }
 .ns-orbit { animation: ns-orbit var(--d) linear infinite; animation-delay: var(--dl); }
 .ns-enter { animation: ns-enter 2.2s ease-in-out both; }
